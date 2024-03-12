@@ -8,39 +8,91 @@ using System;
 
 public class FusionBox : MonoBehaviour
 {
+    [SerializeField] private Vector2 _matrixDimensions;
     [SerializeField] private GameObject _fuseObjectsParent;
     [SerializeField] private GameObject _fuseUIParent;
     [SerializeField] private InputActionReference _changeFuseInput;
-    private List<int> _fuseUIIDs = new List<int>();
-    private List<MeshRenderer> _meshRenderers = new List<MeshRenderer>();
+    [SerializeField] private InputActionReference _activateFuseInput;
+    private MeshRenderer[] _meshRenderers;
     private EventSystem _eventSystem;
     private MeshRenderer _currentSelected;
+    private Color _previousColor = Color.white;
+    private bool _updateSelected;
+    private bool _updateActivated;
 
     private void Awake()
-    {
+    {        
         _eventSystem = FindObjectOfType<EventSystem>();
         _changeFuseInput.action.performed += HandleUINavigation;
-        foreach(Button btn in _fuseUIParent.GetComponentsInChildren<Button>())
+        _activateFuseInput.action.performed += HandleActivateFuse;
+
+        MeshRenderer[] temp = _fuseObjectsParent.GetComponentsInChildren<MeshRenderer>();
+        _meshRenderers = new MeshRenderer[temp.Length];
+        for(int i = 0; i < temp.Length; i++)
         {
-            _fuseUIIDs.Add(btn.gameObject.GetInstanceID());            
-        }
-        foreach(MeshRenderer meshRenderer in _fuseObjectsParent.GetComponentsInChildren<MeshRenderer>())
-        {
-            _meshRenderers.Add(meshRenderer);
+            _meshRenderers[i] = temp[i];
         }
         _eventSystem.SetSelectedGameObject(_fuseUIParent.GetComponentInChildren<Button>().gameObject);
-        _currentSelected = _meshRenderers[_fuseUIIDs.IndexOf(_eventSystem.currentSelectedGameObject.GetInstanceID())];
-        _currentSelected.material.color = Color.red;
+        _previousColor = _meshRenderers[0].material.color;
+        _currentSelected = _meshRenderers[0];
+        _currentSelected.material.color = Color.yellow;
     }
 
     private void HandleUINavigation(InputAction.CallbackContext context)
     {
-        if(context.ReadValue<Vector2>() != Vector2.zero && _eventSystem.currentSelectedGameObject) 
+        if (context.ReadValue<Vector2>() != Vector2.zero && _eventSystem.currentSelectedGameObject) 
         {
-            _currentSelected.material.color = Color.white;
-            Debug.Log($"index is {_fuseUIIDs.IndexOf(_eventSystem.currentSelectedGameObject.GetInstanceID())}");
-            _currentSelected = _meshRenderers[_fuseUIIDs.IndexOf(_eventSystem.currentSelectedGameObject.GetInstanceID())];
-            _currentSelected.material.color = Color.red;
+            _updateSelected = true;
         }
+    }
+
+    private void HandleActivateFuse(InputAction.CallbackContext context)
+    {
+        if(context.ReadValue<float>() == 1)
+        {
+            _updateActivated = true;            
+        }
+    }
+
+    private void UpdateActivateFuse()
+    {
+        if (_updateActivated)
+        {
+            int index = Int32.Parse(_eventSystem.currentSelectedGameObject.name);
+            //up
+            if(index - _matrixDimensions.y > 0)
+                _meshRenderers[index - (int)_matrixDimensions.y].material.color = _meshRenderers[index - (int)_matrixDimensions.y].material.color == Color.red ? Color.white : Color.red;
+            //down
+            if (index + _matrixDimensions.y < _meshRenderers.Length) 
+                _meshRenderers[index + (int)_matrixDimensions.y].material.color = _meshRenderers[index + (int)_matrixDimensions.y].material.color == Color.red ? Color.white : Color.red;
+            //left
+            if (index % _matrixDimensions.y != 0) 
+                _meshRenderers[index - 1].material.color = _meshRenderers[index - 1].material.color == Color.red ? Color.white : Color.red;
+            //right
+            if (index + 1 % _matrixDimensions.x != 0) 
+                _meshRenderers[index + 1].material.color = _meshRenderers[index + 1].material.color == Color.red ? Color.white : Color.red;
+
+            _previousColor = _previousColor == Color.red ? Color.white : Color.red;
+            _updateActivated = false;
+        }
+    }
+
+    private void UpdateFuseSelected()
+    {
+        if (_updateSelected)
+        {
+            //Debug.Log($"parse {Int32.Parse(_eventSystem.currentSelectedGameObject.name)}. name {_eventSystem.currentSelectedGameObject.name}");
+            _currentSelected.material.color = _previousColor;
+            _currentSelected = _meshRenderers[Int32.Parse(_eventSystem.currentSelectedGameObject.name)];
+            _previousColor = _currentSelected.material.color;
+            _currentSelected.material.color = Color.yellow;
+            _updateSelected = false;
+        }
+    }
+
+    private void OnGUI()
+    {
+        UpdateActivateFuse();
+        UpdateFuseSelected();
     }
 }

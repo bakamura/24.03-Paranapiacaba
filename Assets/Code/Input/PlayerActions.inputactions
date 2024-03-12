@@ -364,7 +364,7 @@
                 {
                     "name": "",
                     "id": "7b83e27f-270e-4387-97a6-d634e7ebd8f6",
-                    "path": "<HID::Microntek              USB Joystick          >/button3",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
