@@ -21,14 +21,14 @@ public class FusionBox : MonoBehaviour
     private bool _updateActivated;
 
     private void Awake()
-    {        
+    {
         _eventSystem = FindObjectOfType<EventSystem>();
         _changeFuseInput.action.performed += HandleUINavigation;
         _activateFuseInput.action.performed += HandleActivateFuse;
 
         MeshRenderer[] temp = _fuseObjectsParent.GetComponentsInChildren<MeshRenderer>();
         _meshRenderers = new MeshRenderer[temp.Length];
-        for(int i = 0; i < temp.Length; i++)
+        for (int i = 0; i < temp.Length; i++)
         {
             _meshRenderers[i] = temp[i];
         }
@@ -40,7 +40,7 @@ public class FusionBox : MonoBehaviour
 
     private void HandleUINavigation(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<Vector2>() != Vector2.zero && _eventSystem.currentSelectedGameObject) 
+        if (context.ReadValue<Vector2>() != Vector2.zero && _eventSystem.currentSelectedGameObject)
         {
             _updateSelected = true;
         }
@@ -48,9 +48,9 @@ public class FusionBox : MonoBehaviour
 
     private void HandleActivateFuse(InputAction.CallbackContext context)
     {
-        if(context.ReadValue<float>() == 1)
+        if (context.ReadValue<float>() == 1)
         {
-            _updateActivated = true;            
+            _updateActivated = true;
         }
     }
 
@@ -60,16 +60,16 @@ public class FusionBox : MonoBehaviour
         {
             int index = Int32.Parse(_eventSystem.currentSelectedGameObject.name);
             //up
-            if(index - _matrixDimensions.y > 0)
+            if (index - _matrixDimensions.y >= 0)
                 _meshRenderers[index - (int)_matrixDimensions.y].material.color = _meshRenderers[index - (int)_matrixDimensions.y].material.color == Color.red ? Color.white : Color.red;
             //down
-            if (index + _matrixDimensions.y < _meshRenderers.Length) 
+            if (index + _matrixDimensions.y < _meshRenderers.Length)
                 _meshRenderers[index + (int)_matrixDimensions.y].material.color = _meshRenderers[index + (int)_matrixDimensions.y].material.color == Color.red ? Color.white : Color.red;
             //left
-            if (index % _matrixDimensions.y != 0) 
+            if (index % _matrixDimensions.y != 0)
                 _meshRenderers[index - 1].material.color = _meshRenderers[index - 1].material.color == Color.red ? Color.white : Color.red;
             //right
-            if (index + 1 % _matrixDimensions.x != 0) 
+            if ((index + 1) % _matrixDimensions.y != 0)
                 _meshRenderers[index + 1].material.color = _meshRenderers[index + 1].material.color == Color.red ? Color.white : Color.red;
 
             _previousColor = _previousColor == Color.red ? Color.white : Color.red;
@@ -92,7 +92,7 @@ public class FusionBox : MonoBehaviour
 
     private void OnGUI()
     {
-        UpdateActivateFuse();
         UpdateFuseSelected();
+        UpdateActivateFuse();
     }
 }
