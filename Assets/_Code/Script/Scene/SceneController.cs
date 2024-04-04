@@ -10,7 +10,7 @@ namespace Paranapiacaba.Scene
 {
     public class SceneController : MonoSingleton<SceneController>
     {
-        [SerializeField] private string _baseSceneName;
+        [SerializeField] private string _initialScene;
         [SerializeField] private bool _debugLogs;
 
         private ChapterPointers[] _chapterPointers;
@@ -50,11 +50,13 @@ namespace Paranapiacaba.Scene
             base.Awake();
 
             _chapterPointers = Resources.LoadAll<ChapterPointers>("ChapterPointers");
+
+            LoadBaseScene();
         }
 
         public void LoadBaseScene()
         {
-            if (!string.IsNullOrEmpty(_baseSceneName)) SceneManager.LoadScene(_baseSceneName);
+            if (!string.IsNullOrEmpty(_initialScene)) StartLoad(_initialScene);//SceneManager.LoadScene(_baseSceneName);
         }
 
         public void PositionPlayer()
