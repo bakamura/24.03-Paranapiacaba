@@ -41,5 +41,11 @@ namespace Paranapiacaba.Player {
             }
         }
 
+        [ContextMenu("STRESS")]
+        private void TestStres()
+        {
+            AddStress(1);
+        }
+
     }
 }
