@@ -14,6 +14,12 @@ namespace Paranapiacaba.UI {
         [SerializeField] private InputActionReference _pauseInput;
         [SerializeField] private InputActionReference _unpauseInput;
 
+        [Header("References")]
+
+        [SerializeField] private MenuGroup _canvasMenuGroup;
+        [SerializeField] private Menu _hud;
+        [SerializeField] private Menu _pause;
+
         private void Start() {
             _pauseInput.action.started += (callBackContext) => PauseGame(true);
             _unpauseInput.action.started += (callBackContext) => PauseGame(true);
@@ -21,6 +27,10 @@ namespace Paranapiacaba.UI {
 
         public void PauseGame(bool isPausing) {
             onPause?.Invoke(isPausing);
+        }
+
+        public void OpenMenu(bool isPausing) {
+
         }
 
     }
