@@ -15,9 +15,7 @@ namespace Paranapiacaba.Player {
         private float _stressCurrent;
         private bool _failState = false;
 
-        protected override void Awake() {
-            base.Awake();
-
+        private void Start() {
             onStressChange.AddListener(FailState);
 
             Logger.Log(LogType.Player, $"{typeof(PlayerStress).Name} Initialized");
@@ -26,24 +24,23 @@ namespace Paranapiacaba.Player {
         public void AddStress(float amount) {
             if (!_failState) {
                 _stressCurrent += amount;
-                onStressChange.Invoke(_stressCurrent / _stressMax);
+                onStressChange.Invoke(_stressCurrent);
 
                 Logger.Log(LogType.Player, $"Stress Meter: {_stressCurrent}/{_stressMax}");
             }
         }
 
         private void FailState(float stressCurrent) {
-            if (!_failState) {
-                if (stressCurrent >= _stressMax) onFailState.Invoke();
+            if (!_failState && stressCurrent >= _stressMax) {
                 _failState = true;
+                onFailState.Invoke();
 
                 Logger.Log(LogType.Player, $"Player Fail State");
             }
         }
 
-        [ContextMenu("STRESS")]
-        private void TestStres()
-        {
+        [ContextMenu("AddStressDebug")]
+        private void AddStressDebug() {
             AddStress(1);
         }
 

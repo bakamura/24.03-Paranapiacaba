@@ -23,6 +23,7 @@ namespace Paranapiacaba.UI {
         private void Start() {
             _pauseInput.action.started += (callBackContext) => PauseGame(true);
             _unpauseInput.action.started += (callBackContext) => PauseGame(true);
+            onPause.AddListener(OpenMenu);
         }
 
         public void PauseGame(bool isPausing) {
@@ -30,7 +31,7 @@ namespace Paranapiacaba.UI {
         }
 
         public void OpenMenu(bool isPausing) {
-
+            _canvasMenuGroup.CloseCurrentThenOpen(isPausing ? _pause : _hud);
         }
 
     }
