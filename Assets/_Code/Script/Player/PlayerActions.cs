@@ -48,12 +48,9 @@ namespace Paranapiacaba.Player {
         protected override void Awake() {
             base.Awake();
 
-            ChangeInputMap(0);
             _interactInput.action.started += Interact;
             _abilityInput.action.started += Ability;
             _changeAbilityInput.action.started += ChangeAbility;
-
-            //onInteract.AddListener(() => PlayerMovement.Instance.DisableMovement(PlayerAnimation.Instance.InteractDuration())); //
 
             _abilityCurrent = (sbyte)(_abilities.Count > 0 ? 0 : -1);
 
