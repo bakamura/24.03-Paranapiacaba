@@ -5,7 +5,7 @@ namespace Paranapiacaba.Scene
 {
     public class SceneLoader : MonoBehaviour
     {
-        [SerializeField] private string _sceneId;
+        public string _sceneId;
         [SerializeField] private UnityEvent _onSceneLoad;
         [SerializeField] private UnityEvent _onSceneUnload;
 #if UNITY_EDITOR

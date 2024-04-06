@@ -2,6 +2,7 @@ using UnityEngine;
 using Paranapiacaba.Player;
 using Paranapiacaba.Scene;
 using System.Collections;
+using UnityEngine.Events;
 
 namespace Paranapiacaba.UI {
     public class SaveSelector : MonoBehaviour {
@@ -27,7 +28,9 @@ namespace Paranapiacaba.UI {
             yield return new WaitForSeconds(SceneChangeFade.Instance.gameObject.GetComponent<Fade>().TransitionDuration);
 
             _mainMenu.UnloadScene();
-            _sceneToLoad.LoadScene();
+            UnityEvent loadEvent = new();
+            loadEvent.AddListener(() => PlayerMovement.Instance.transform.position = GameObject.Find("PLAYER_START").transform.position);
+            SceneController.Instance.StartLoad(_sceneToLoad._sceneId, loadEvent);
         }
 
     }
