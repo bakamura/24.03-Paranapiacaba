@@ -810,7 +810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMenu: {fileID: 1233705852}
-  _sceneToLoad: {fileID: 2127537762}
+  _sceneToLoad: {fileID: 542029518}
 --- !u!1 &542029516
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5e36e779237184b82f842b830f343a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneId: Tutorial 1
+  _sceneId: Tutorial Naka
   _onSceneLoad:
     m_PersistentCalls:
       m_Calls: []

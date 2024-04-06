@@ -139,6 +139,7 @@ namespace Paranapiacaba.Player {
         public void ChangeInputMap(byte mapId) {
             foreach (InputActionMap actionMap in _interactInput.asset.actionMaps) actionMap.Disable(); // Change to memory current
             _interactInput.asset.actionMaps[mapId].Enable();
+            PlayerMovement.Instance.ToggleMovement(mapId == 0);
         }
 
     }
