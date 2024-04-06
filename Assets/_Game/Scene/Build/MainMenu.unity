@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731715, g: 0.13414735, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -563,8 +563,8 @@ GameObject:
   - component: {fileID: 515700691}
   - component: {fileID: 515700696}
   - component: {fileID: 515700695}
+  - component: {fileID: 515700699}
   - component: {fileID: 515700697}
-  - component: {fileID: 515700698}
   m_Layer: 5
   m_Name: TitleScreen
   m_TagString: Untagged
@@ -718,27 +718,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b5974240a78904f98648348e7c8c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &515700698
-BoxCollider:
+--- !u!114 &515700699
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515700690}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f4ca11f162096469352b9f43381b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1029287565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1438,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Paranapiacaba.Scene.SceneLoader, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 515700699}
+        m_TargetAssemblyTypeName: Paranapiacaba.UI.SaveSelector, Assembly-CSharp
+        m_MethodName: EnterSave
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
