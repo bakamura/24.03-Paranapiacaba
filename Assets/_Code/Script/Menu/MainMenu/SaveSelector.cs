@@ -20,6 +20,7 @@ namespace Paranapiacaba.UI {
         public void EnterSave(int saveId) {
             PlayerActions.Instance.ChangeInputMap(0);
             SceneChangeFade.DoFade();
+            StartCoroutine(EnterSaveRoutine());
         }
 
         private IEnumerator EnterSaveRoutine() {
