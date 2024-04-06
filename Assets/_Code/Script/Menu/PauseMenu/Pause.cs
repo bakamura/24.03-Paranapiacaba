@@ -1,3 +1,4 @@
+using Paranapiacaba.Player;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -22,7 +23,7 @@ namespace Paranapiacaba.UI {
 
         private void Start() {
             _pauseInput.action.started += (callBackContext) => PauseGame(true);
-            _unpauseInput.action.started += (callBackContext) => PauseGame(true);
+            _unpauseInput.action.started += (callBackContext) => PauseGame(false);
             onPause.AddListener(OpenMenu);
         }
 
@@ -31,7 +32,9 @@ namespace Paranapiacaba.UI {
         }
 
         public void OpenMenu(bool isPausing) {
+            Debug.Log($"OpenMenu {isPausing}");
             _canvasMenuGroup.CloseCurrentThenOpen(isPausing ? _pause : _hud);
+            PlayerActions.Instance.ChangeInputMap((byte)(isPausing ? 1 : 0));
         }
 
     }

@@ -204,7 +204,19 @@ MonoBehaviour:
   _changeAbilityInput: {fileID: -4199026391873933470, guid: 23a6d09ad1ce89c4a9aa4c1646f1987d, type: 3}
   onInteract:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2418252126165416788}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Interact
+          m_BoolArgument: 0
+        m_CallState: 2
   onInteractLong:
     m_PersistentCalls:
       m_Calls: []

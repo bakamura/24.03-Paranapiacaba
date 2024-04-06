@@ -66,6 +66,7 @@ namespace Paranapiacaba.Player {
         private void Interact(InputAction.CallbackContext input) {
             if (_interactableClosestCache != null) {
                 _interactableClosest.Interact();
+                onInteract.Invoke();
 
                 Logger.Log(LogType.Player, $"Interact with: {_interactableClosestCache.gameObject.name}");
             }
