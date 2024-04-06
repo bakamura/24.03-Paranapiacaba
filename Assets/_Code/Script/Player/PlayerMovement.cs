@@ -80,11 +80,11 @@ namespace Paranapiacaba.Player {
         }
 
         private void Update() {
-            if (_canMove) Rotate();
         }
 
         private void FixedUpdate() {
             if(_canMove) Move();
+            if (_canMove) Rotate();
         }
 
         private void MoveDirection(InputAction.CallbackContext input) {

@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/_Game/Scene/Build/MainMenu.unity
     guid: 0f0fdfe554eb05047b4d27d6d34015ec
   - enabled: 1
-    path: Assets/_Game/Scene/Tutorial 1.unity
+    path: Assets/_Game/Scene/Tutorial Naka.unity
     guid: 767a2050e0b656148b5b14c25576f4dc
   - enabled: 1
     path: Assets/_Game/Scene/Development/TestScene.unity
