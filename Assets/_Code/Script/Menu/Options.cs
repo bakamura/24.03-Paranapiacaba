@@ -36,11 +36,15 @@ namespace Ivayami.UI {
         public void SliderUpdate() {
             _musicSlider.value = SaveSystem.Instance.Options.musicVol;
             _sfxSlider.value = SaveSystem.Instance.Options.sfxVol;
-            if(_cameraSensitivitySlider != null) _cameraSensitivitySlider.value = SaveSystem.Instance.Options.cameraSensitivity;
+            if (_cameraSensitivitySlider != null) _cameraSensitivitySlider.value = SaveSystem.Instance.Options.cameraSensitivity;
         }
 
         public void SaveOptions() {
             SaveSystem.Instance.SaveOptions();
+        }
+
+        public void ChangeLanguage(int language) {
+            SaveSystem.Instance.Options.language = language;
         }
 
     }
