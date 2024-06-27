@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47a5bcca8b297ce4983d382ff3cb6227
+guid: e5716c7e02bda1c43a07ad2eedd06747
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -19,6 +19,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Mouth
     second: {fileID: 2100000, guid: 3eb06eab83583bf47bee11c489add624, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sclera
+    second: {fileID: 2100000, guid: 4d320e185207c8f43a661d3b2762ee1d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
